@@ -128,7 +128,7 @@ def parse_field_definitions(field_defs_str):
 
         if field_type == 'C':
             length = int(parts[2]) if len(parts) >= 3 else 254
-            field_def = f"{field_name} C({length})"
+            # field_def = f"{field_name} C({length})"
 
         elif field_type in ('N', 'F'):
             if len(parts) >= 4:
@@ -237,3 +237,38 @@ def json_to_dbf_corrected(json_file_path, dbf_file_path, field_defs_str):
 
     table.close()
     print(f"Успешно создано записей: {successful}")
+
+#
+# if __name__ == "__main__":
+#     try:
+#         # Конфигурация
+#         INPUT_FILES = ['file1.dbf', 'file2.dbf']
+#         OUTPUT_JSON = 'final_merged.json'
+#         OUTPUT_DBF = 'output.dbf'
+#
+#         FIELD_DEFS = (
+#             "LC:C:6,FM:C:23,IM:C:21,OT:C:21,REM:C:10,GOD:C:4,"
+#             "N:C:2,KOD_OTKR:C:4,DAT_OTKR:D,KOD_ZAKR:C:11,DAT_ZAKR:D,"
+#             "DATR:D,VPEN:C:3,SNAZN:N:10:2,D_YXOD:D,D_DESTR:D,"
+#             "VPN:C:3,CART:C:2,DNASN:D"
+#         )
+#
+#         # Выполнение конвейера
+#         json_files = []
+#         for i, dbf_file in enumerate(INPUT_FILES, 1):
+#             json_file = f'temp_{i}.json'
+#             dbf_to_json(dbf_file, json_file)
+#             json_files.append(json_file)
+#
+#         # Объединение
+#         if len(json_files) == 2:
+#             smart_json_merge(json_files[0], json_files[1], OUTPUT_JSON)
+#
+#         # Конвертация обратно
+#         json_to_dbf_corrected(OUTPUT_JSON, OUTPUT_DBF, FIELD_DEFS)
+#
+#         print("✓ Конвейер выполнен успешно!")
+#
+#     except Exception as e:
+#         print(f"✗ Ошибка в основном потоке: {e}")
+
